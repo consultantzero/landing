@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConsultantZero</title>
+    <style>
+        :root {
+            background-color: black;
+            overflow: hidden;
+            font-family: monospace;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+        }
+
+        .column {
+            position: relative;
+            width: 2vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .letter {
+            color: rgba(0, 150, 255, 0.5);
+            text-shadow: 0 0 5px rgba(0, 150, 255, 0.7);
+            font-size: 1.2vw;
+            opacity: 0.6;
+            animation: matrix-fall linear infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes matrix-fall {
+            0% {
+                transform: translateY(-100%) scale(1.2);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0.6;
+            }
+        }
+
+        .container {
+            position: relative;
+            font-size: 5vw;
+            font-weight: bold;
+            color: rgba(0, 150, 255, 0.8);
+            text-shadow: 0 0 15px rgba(0, 150, 255, 0.9), 0 0 30px rgba(0, 150, 255, 0.7);
+        }
+
+        .bright {
+            color: rgba(0, 150, 255, 1);
+            text-shadow: 0 0 20px rgba(0, 150, 255, 1), 0 0 40px rgba(0, 150, 255, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background" id="matrix-background"></div>
+    <div class="container">ConsultantZero</div>
+
+    <script>
+        const background = document.getElementById('matrix-background');
+        const chars = '0123456789x';
+        const screenWidth = window.innerWidth;
+        const numColumns = Math.floor(screenWidth / 30);
+
+        for (let i = 0; i < numColumns; i++) {
+            let column = document.createElement('div');
+            column.classList.add('column');
+            column.style.left = (i * 2) + 'vw';
+            background.appendChild(column);
+
+            let numLetters = Math.floor(Math.random() * 10) + 5;
+            for (let j = 0; j < numLetters; j++) {
+                let span = document.createElement('span');
+                span.innerText = chars[Math.floor(Math.random() * chars.length)];
+                span.classList.add('letter');
+                span.style.animationDuration = (Math.random() * 4 + 2) + 's';
+                span.style.animationDelay = Math.random() * 5 + 's';
+                span.style.opacity = Math.random() * 0.5 + 0.2;
+                span.style.transform = `scale(${1 - j * 0.1})`;
+
+                if (Math.random() > 0.8) {
+                    span.classList.add('bright');
+                }
+                column.appendChild(span);
+            }
+        }
+    </script>
+</body>
+
+</html>
