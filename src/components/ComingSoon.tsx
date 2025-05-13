@@ -4,7 +4,18 @@ import { BackgroundBeams } from "./ui/background-beams";
 import { ConfirmationMessage } from "./ConfirmationMessage";
 import { submitForm } from "@/lib/form";
 
-export function ComingSoon() {
+interface Props {
+  title?: string,
+  subtitle?: string,
+  tagLine?: string,
+  siteUrl?: string,
+  logoUrl?: string,
+  confirmationMsg?: string,
+  className?: string,
+}
+
+
+export function ComingSoon({title, subtitle, tagLine, siteUrl, logoUrl="/logo.svg", confirmationMsg, className}: Props) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,29 +27,29 @@ export function ComingSoon() {
   };
 
   return (
-    <div className="h-full w-full rounded-none bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+    <div className={`h-full w-full rounded-none relative flex flex-col items-center justify-center antialiased bg-neutral-950 $${className}`}>
       <div className="max-w-2xl mx-auto p-4">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base min-h-30 sm:min-h-36 px-4 sm:px-5 sm:w-auto"
-            href="https://issuesolved.ca"
+            href={siteUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
               className="dark:invert"
-              src="/logo.svg"
-              alt="Website logo"
+              src={logoUrl}
+              alt="Logo"
               width={200}
               height={200}
             />
-            <span className="font-bold mt-4 text-base">Inc.</span>
+            <span className="font-bold mt-4 text-base">{subtitle}</span>
           </a>
         <h1 className="relative z-10 text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
-          Join the waitlist
+          {title}
         </h1>
         <p></p>
         <p className="text-neutral-500 max-w-lg mx-auto my-2 text-lg text-center relative z-10">
-          Coming soon
+          {tagLine}
         </p>
         {!isSubmitted ? (
           <form 
@@ -60,7 +71,7 @@ export function ComingSoon() {
             />
           </form>
         ) : (
-          <ConfirmationMessage />
+          <ConfirmationMessage msg={confirmationMsg} />
         )}
       </div>
       <BackgroundBeams />

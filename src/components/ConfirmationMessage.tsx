@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export function ConfirmationMessage() {
+export function ConfirmationMessage({msg}: {msg?: string}) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -15,7 +15,7 @@ export function ConfirmationMessage() {
         transition={{ delay: 0.2, duration: 0.5 }}
         className="text-teal-500 text-lg font-medium"
       >
-        Thanks for interest! We'll be in touch soon.
+        {msg}
       </motion.p>
     </motion.div>
   );

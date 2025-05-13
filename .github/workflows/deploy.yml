@@ -1,8 +1,6 @@
-name: Deploy to Netlify (static build)
+name: Deploy to GitHub Pages (static build)
 
 on:
-  pull_request:
-    types: [closed]
   push:
     branches:
       - main
@@ -27,10 +25,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          args: deploy --dir=build --prod
+          folder: build # The folder where your static site is built

@@ -24,4 +24,4 @@ npm run dev
 
 ## Quick deployment
 
-Deploy to Vercel or Netlify - You can setup netifly form coming soon email handling.
+Deploy to Github pages, Netlify or Vercel - You also can enable netifly forms to handle coming soon email.
