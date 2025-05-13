@@ -12,7 +12,7 @@ export default function Page() {
           title="IssueSolved" 
           subtitle="Inc." 
           tagLine="Cloud and AI Consulting"
-          className="bg-black" />
+          className="bg-white text-black" />
       </main>
     </div>
   );
