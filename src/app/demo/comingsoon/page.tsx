@@ -1,13 +1,13 @@
 "use client";
 
-import { Simple } from "@/components/Simple";
+import { ComingSoon } from "@/components/ComingSoon";
 
-export default function Home() {
+export default function ComingSoonPage() {
   return (
     <div className="flex h-screen w-screen">
       <main className="flex h-full w-full">
-        <Simple />
+        <ComingSoon />
       </main>
     </div>
   );
-}
+} 
