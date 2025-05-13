@@ -1,21 +1,19 @@
-name: Deploy to Netlify
+name: Deploy to Netlify (static build)
 
 on:
   pull_request:
-    # types: [closed]
+    types: [closed]
   push:
     branches:
       - main
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # ( Build to ./dist or other directory... )
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,4 +33,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=.next --prod
+          args: deploy --dir=build --prod
