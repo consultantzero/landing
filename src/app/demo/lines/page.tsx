@@ -2,13 +2,13 @@
 
  import React from "react";
 
-import { Simple } from "@/components/Simple";
+import { Lines } from "@/components/Lines";
 
 export default function Page() {
   return (
     <div className="flex h-screen w-screen">
       <main className="flex h-full w-full">
-        <Simple 
+        <Lines 
           title="IssueSolved" 
           subtitle="Inc." 
           tagLine="Cloud and AI Consulting"
